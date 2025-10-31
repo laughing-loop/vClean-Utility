@@ -56,10 +56,10 @@
 ## 📸 Screenshots
 
 ### Main Interface
-![Main Interface](https://via.placeholder.com/800x600?text=Main+Interface)
+![Main Interface](V-Clean%20Enterprise%20v3.0%2031_10_2025%2006_30_14.png)
 
 ### About Dialog
-![About Dialog](https://via.placeholder.com/500x400?text=About+Dialog)
+![About Dialog](About%20V-Clean%20Enterprise%2031_10_2025%2006_31_16.png)
 
 ---
 
