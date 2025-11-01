@@ -35,6 +35,14 @@
 
 ---
 
+## 🔐 Code Signing
+
+Free code signing provided by [SignPath.io](https://signpath.io), certificate by [SignPath Foundation](https://signpath.foundation).
+
+See our [Code Signing Policy](CODE_SIGNING_POLICY.md) for details.
+
+---
+
 ## 📋 System Requirements
 
 - **OS:** Windows 10/11 (64-bit)
@@ -66,7 +74,7 @@
 ## 🔄 Version History
 
 ### v3.0.0 (Latest)
-- Complete UI redesign with modern Rufus-style interface
+- Complete UI redesign with modern Class-style interface
 - Added dark/light theme support
 - Improved virus detection algorithms
 - Enhanced system health monitoring
