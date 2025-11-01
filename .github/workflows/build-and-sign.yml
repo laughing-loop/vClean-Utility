@@ -1,0 +1,67 @@
+name: Build and Sign
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Setup PowerShell
+      uses: actions/setup-node@v3
+      
+    - name: Install PS2EXE
+      shell: powershell
+      run: |
+        Install-Module -Name ps2exe -Force -Scope CurrentUser
+        
+    - name: Build Executable
+      shell: powershell
+      run: |
+        # This will be replaced with actual build script
+        Write-Host "Building VClean-Launcher.exe"
+        # ps2exe .\VClean-GUI-V3.ps1 .\VClean-Launcher.exe -noConsole -requireAdmin -iconFile .\assets\icons\vclean-app.ico
+        
+    - name: Upload artifact for signing
+      uses: actions/upload-artifact@v3
+      with:
+        name: unsigned-executable
+        path: VClean-Launcher.exe
+        
+  sign:
+    needs: build
+    runs-on: windows-latest
+    
+    steps:
+    - name: Download unsigned artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: unsigned-executable
+        
+    # SignPath signing step will be added here after approval
+    # - name: Sign with SignPath
+    #   uses: signpath/github-action-submit-signing-request@v0.3
+    #   with:
+    #     api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+    #     organization-id: ${{ secrets.SIGNPATH_ORGANIZATION_ID }}
+    #     project-slug: 'vClean-Utility'
+    #     signing-policy-slug: 'release-signing'
+    #     artifact-configuration-slug: 'default'
+    #     input-artifact-path: VClean-Launcher.exe
+    #     output-artifact-path: VClean-Launcher-Signed.exe
+        
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          VClean-Launcher.exe
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
